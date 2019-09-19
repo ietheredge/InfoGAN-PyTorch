@@ -1,6 +1,7 @@
 import torch
 import torchvision.transforms as transforms
 import torchvision.datasets as dsets
+from my_torch_datasets import Guppies
 
 # Directory containing the data.
 root = 'data/'
@@ -48,6 +49,9 @@ def get_data(dataset, batch_size):
                 (0.5, 0.5, 0.5))])
 
         dataset = dsets.ImageFolder(root=root+'celeba/', transform=transform)
+
+    elif dataset == 'guppies':
+        dataset = Guppies()
 
     # Create dataloader.
     dataloader = torch.utils.data.DataLoader(dataset, 
