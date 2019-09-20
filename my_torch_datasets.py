@@ -1,5 +1,6 @@
 import numpy as np
 import torch
+import torchvision.transforms as transforms
 
 class Guppies(object):
 
