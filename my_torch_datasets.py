@@ -13,9 +13,9 @@ class Guppies(object):
         self.transform = transforms.Compose([
             transforms.Resize(32),
             transforms.CenterCrop(32),
-            transforms.ToTensor(),
-            transforms.Normalize((0.5, 0.5, 0.5),
-                (0.5, 0.5, 0.5))])
+            # transforms.ToTensor(),
+            # transforms.Normalize((0.5, 0.5, 0.5),
+            #     (0.5, 0.5, 0.5))])
         self.imgs = torch.from_numpy(self.dataset_zip).float()
         self.labels = self.labels_zip
 
