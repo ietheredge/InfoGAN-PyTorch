@@ -15,9 +15,10 @@ class Guppies(object):
             transforms.CenterCrop(32),
             # transforms.ToTensor(),
             # transforms.Normalize((0.5, 0.5, 0.5),
-            #     (0.5, 0.5, 0.5))])
+            #     (0.5, 0.5, 0.5))
+        ])
         self.imgs = torch.from_numpy(self.dataset_zip).float()
-        self.labels = self.labels_zip
+        self.labels = self.labels_zips
 
     def __len__(self):
         return self.imgs.size(0)
