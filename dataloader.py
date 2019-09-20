@@ -50,7 +50,7 @@ def get_data(dataset, batch_size):
 
         dataset = dsets.ImageFolder(root=root+'celeba/', transform=transform)
 
-    elif dataset == 'guppies':
+    elif dataset == 'Guppies':
         dataset = Guppies()
 
     # Create dataloader.
