@@ -9,19 +9,12 @@ class Guppies(object):
         self.dataset_zip = np.load(loc)
         self.labels_zip = np.load(label_loc)
         self.aug = aug
-        # self.trans = transforms.Compose([
-        #     transforms.RandomRotation(5),
-        #     transforms.RandomAffine(
-        #         0,
-        #         translate=(0.2, 0.3),
-        #         scale=(0.5, 1.5),
-        #         ),
-        #     transforms.RandomHorizontalFlip(p=0.2)
-        # ])
-        # self.crop = transforms.Compose([
-        #     transforms.Resize(512, interpolation=2),
-        #     transforms.RandomCrop(256),
-        # ])
+        self.transform = transforms.Compose([
+            transforms.Resize(32),
+            transforms.CenterCrop(32),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5, 0.5, 0.5),
+                (0.5, 0.5, 0.5))])
         self.imgs = torch.from_numpy(self.dataset_zip).float()
         self.labels = self.labels_zip
 
@@ -30,8 +23,6 @@ class Guppies(object):
 
     def __getitem__(self, index):
         x = self.imgs[index].view(256, 256, 3).permute(2, 0, 1)
-        # if self.aug:
-        #     x_t = self.trans(x)
-        #     x_c = self.crop(x)
+        x = self.transform(x)
         y = self.labels[index]
         return x, y  # [x, x_t, x_c]
